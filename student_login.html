@@ -1,1 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <link rel="stylesheet" href="css/student-login-styles.css">
+</head>
+<body>
+    <div class="loginbox">
+    <h1>Student Login</h1>
+    <div class="popup">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Cross_red_circle.svg/1024px-Cross_red_circle.svg.png" id="popup-icon">
+        <p id="popup-text">Incorrect Login Credentials</p>
+    </div>
+    <form>
+        <div class="field">
+            <input type="text" name="email" autocomplete="off" required id="student-num" maxlength="9"/>
+            <label for="email" class="label-wrapper">
+                <span class="label-text"> Student Number </span>
+    </form>
+    </div>
+    <form>
+        <div class="field">
+            <input type="password" name="password" autocomplete="off" required id="password"/>
+            <label for="password" class="label-wrapper">
+            <span class="label-text"> Password </span>
+    </form>
+    </div> 
+    <div class="submit">
+        <input type="submit" name="" value="Login" id="submit">
+    </div>
+    <div class="links">
+    </div>
 
+    <script src="js/login.js"></script>
+</body>
+</html>
