@@ -1,1 +1,0 @@
-# ClubScraper-frontend
