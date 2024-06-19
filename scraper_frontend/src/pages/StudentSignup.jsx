@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 
 function StudentSignup() {
+  useEffect(() => {
+    const form = document.getElementById('signup');
+    const handleSubmit = (event) => {
+      event.preventDefault(); 
+      window.location.href = 'student_login.html';
+    };
+
+    form.addEventListener('submit', handleSubmit);
+
+    return () => {
+      form.removeEventListener('submit', handleSubmit);
+    };
+  }, []);
+
   return (
     <div className="loginbox">
       <h1>Student Signup</h1>
-      <form>
+      <form id="signup">
         <div className="field">
           <input 
             type="text" 

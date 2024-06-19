@@ -12,17 +12,17 @@ function StudentLogin() {
         />
         <p id="popup-text">Incorrect Login Credentials</p>
       </div>
-      <form>
+      <form action="login.php" method="POST">
         <div className="field">
           <input 
             type="text" 
-            name="email" 
+            name="number" 
             autoComplete="off" 
             required 
             id="student-num" 
             maxLength="9"
           />
-          <label htmlFor="email" className="label-wrapper">
+          <label htmlFor="number" className="label-wrapper">
             <span className="label-text">Student Number</span>
           </label>
         </div>
