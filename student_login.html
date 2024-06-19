@@ -14,26 +14,23 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Cross_red_circle.svg/1024px-Cross_red_circle.svg.png" id="popup-icon">
         <p id="popup-text">Incorrect Login Credentials</p>
     </div>
-    <form>
+    <form action="login.php" method="POST">
         <div class="field">
-            <input type="text" name="email" autocomplete="off" required id="student-num" maxlength="9"/>
-            <label for="email" class="label-wrapper">
+            <input type="text" name="number" autocomplete="off" required id="student-num" maxlength="9"/>
+            <label for="number" class="label-wrapper">
                 <span class="label-text"> Student Number </span>
-    </form>
     </div>
-    <form>
         <div class="field">
             <input type="password" name="password" autocomplete="off" required id="password"/>
             <label for="password" class="label-wrapper">
             <span class="label-text"> Password </span>
-    </form>
     </div> 
     <div class="submit">
         <input type="submit" name="" value="Login" id="submit">
     </div>
     <div class="links">
     </div>
-
-    <script src="js/login.js"></script>
+    </form>
+    </div>
 </body>
 </html>
