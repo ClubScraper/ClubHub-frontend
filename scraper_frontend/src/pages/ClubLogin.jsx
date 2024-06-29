@@ -1,9 +1,10 @@
 import React from 'react';
 
 function StudentLogin() {
+
   return (
     <div className="loginbox">
-      <h1>Student Login</h1>
+      <h1>Club Login</h1>
       <div className="popup">
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Cross_red_circle.svg/1024px-Cross_red_circle.svg.png" 
@@ -12,7 +13,7 @@ function StudentLogin() {
         />
         <p id="popup-text">Incorrect Login Credentials</p>
       </div>
-      <form action="login.php" method="POST">
+      <form method="POST">
         <div className="field">
           <input 
             type="text" 
@@ -23,7 +24,7 @@ function StudentLogin() {
             maxLength="9"
           />
           <label htmlFor="number" className="label-wrapper">
-            <span className="label-text">Student Number</span>
+            <span className="label-text">Club Name</span>
           </label>
         </div>
         <div className="field">
@@ -38,16 +39,12 @@ function StudentLogin() {
             <span className="label-text">Password</span>
           </label>
         </div>
-        <div className="submit">
-          <input 
-            type="submit" 
-            value="Login" 
-            id="submit"
-          />
-        </div>
+        <button type='submit' className="submit">
+          Submit
+        </button>
       </form>
       <div className="links">
-        <a href="/studentsignup" className='accountlink'>Don't have an account?</a>
+        <a href="/clubsignup" className='accountlink'>Don't have an account?</a>
       </div>
     </div>
   );
