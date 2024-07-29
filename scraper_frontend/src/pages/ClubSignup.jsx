@@ -42,44 +42,46 @@ const StudentSignup = () => {
   }
 
   return (
-    <div className="loginbox">
-      <h1>Club Signup</h1>
-      <form id="signup" onSubmit={handleSubmit}>
-        <div className="field">
-          <input 
-            name="clubname" 
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="number" className="label-wrapper">
-            <span className="label-text">Club Name</span>
-          </label>
-        </div>
-        <div className="field">
-          <input 
-            name="email" 
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="email" className="label-wrapper">
-            <span className="label-text">Email</span>
-          </label>
-        </div>
-        <div className="field">
-          <input 
-            name="password" 
-            type="password"
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="password" className="label-wrapper">
-            <span className="label-text">Password</span>
-          </label>
-        </div>
-        <button type='submit' className="submit">
-          Submit
-        </button>
-      </form>
+    <div className="signup_page">
+      <div className="loginbox">
+        <h1 className='signup_header'>Club Signup</h1>
+        <form id="signup" onSubmit={handleSubmit}>
+          <div className="field">
+            <input 
+              name="clubname" 
+              onChange={handleChange}
+              required
+            />
+            <label htmlFor="number" className="label-wrapper">
+              <span className="label-text">Club Name</span>
+            </label>
+          </div>
+          <div className="field">
+            <input 
+              name="email" 
+              onChange={handleChange}
+              required
+            />
+            <label htmlFor="email" className="label-wrapper">
+              <span className="label-text">Email</span>
+            </label>
+          </div>
+          <div className="field">
+            <input 
+              name="password" 
+              type="password"
+              onChange={handleChange}
+              required
+            />
+            <label htmlFor="password" className="label-wrapper">
+              <span className="label-text">Password</span>
+            </label>
+          </div>
+          <button type='submit' className="submit">
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

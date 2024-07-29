@@ -1,39 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { supabase } from '../client';
 
-function StudentLogin() {
+const StudentLogin = () => {
+
+  const [formData, setFormData] = useState({
+    email:'',password:''
+  })
+
+  console.log(formData)
+  
+  function handleChange(event){
+    setFormData((prevFormData)=>{
+      return{
+        ...prevFormData,
+        [event.target.name]:event.target.value
+      }
+    })
+  }
+
+  async function handleSubmit(e){    
+    e.preventDefault()
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password,
+      })
+      if (error) throw error
+      console.log(data)
+
+    } catch (error) {
+      alert(error)
+    }
+  }
 
   return (
     <div className="loginbox">
-      <h1>Club Login</h1>
-      <div className="popup">
-        <img 
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Cross_red_circle.svg/1024px-Cross_red_circle.svg.png" 
-          id="popup-icon" 
-          alt="Incorrect Login"
-        />
-        <p id="popup-text">Incorrect Login Credentials</p>
-      </div>
-      <form method="POST">
-        <div className="field">
+      <h1 className='login_header'>Club Login</h1>
+      <form id="signup" onSubmit={handleSubmit}>
+      <div className="field">
           <input 
-            type="text" 
-            name="number" 
-            autoComplete="off" 
-            required 
-            id="student-num" 
-            maxLength="9"
+            name="email" 
+            onChange={handleChange}
+            required
           />
-          <label htmlFor="number" className="label-wrapper">
-            <span className="label-text">Club Name</span>
+          <label htmlFor="email" className="label-wrapper">
+            <span className="label-text">Email</span>
           </label>
         </div>
         <div className="field">
           <input 
-            type="password" 
             name="password" 
-            autoComplete="off" 
-            required 
-            id="password"
+            type="password"
+            onChange={handleChange}
+            required
           />
           <label htmlFor="password" className="label-wrapper">
             <span className="label-text">Password</span>
@@ -46,7 +66,7 @@ function StudentLogin() {
       <div className="links">
         <a href="/clubsignup" className='accountlink'>Don't have an account?</a>
       </div>
-    </div>
+    </div>   
   );
 }
 
