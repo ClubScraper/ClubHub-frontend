@@ -14,6 +14,9 @@ module.exports = {
         workshop: "#7fa900",
         network: "#dc2626",
       },
+      backgroundImage: {
+        'utsc-img': "url('/public/assets/images/utsc.jpg')",
+      },
     },
   },
   plugins: [],

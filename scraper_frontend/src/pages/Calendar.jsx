@@ -13,7 +13,6 @@ import {
   ResourceDirective,
 } from "@syncfusion/ej2-react-schedule";
 import { registerLicense } from "@syncfusion/ej2-base";
-import ClubCard from "../components/ClubCard"
 
 const mapData = (entry) => {
   return entry.map(item => ({
@@ -43,6 +42,47 @@ const Calendar = () => {
   const [fetchError, setFetchError] = useState(null)
   const [test, setTest] = useState([])
   const [clubs, setClubs] = useState([])
+  const checkboxList = clubs.map((club, index) => (
+    <label key={club.club_name}>
+      <input type="checkbox" value={club.club_name} />
+      {club}
+    </label>
+  ));
+
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [categoryFilters, setCategoryFilters] = useState(new Set());
+  const handleCheckboxChange = (event) => {
+  const checkedId = event.target.value;
+  const isChecked = event.target.checked;
+  
+    if (isChecked) {
+      setSelectedIds((prevSelectedIds) => {
+        return [...prevSelectedIds, checkedId];
+      });
+    } else {
+      setSelectedIds((prevSelectedIds) => {
+
+        return prevSelectedIds.filter((id) => id !== checkedId);
+      });
+    }
+  
+    if (isChecked) {
+      setCategoryFilters((prevCategoryFilters) => {
+        const newFilters = new Set(prevCategoryFilters);
+        newFilters.add(checkedId);
+        return newFilters;
+      });
+    } else {
+      setCategoryFilters((prevCategoryFilters) => {
+        const newFilters = new Set(prevCategoryFilters);
+        newFilters.delete(checkedId);
+        return newFilters;
+      });
+    }
+  };
+
+  
+  const filteredEvents = test.filter(event => categoryFilters.size === 0 || categoryFilters.has(event.Subject.split(':')[0]));
 
   useEffect (() => {
     const fetchTest = async () =>  {
@@ -81,14 +121,8 @@ const Calendar = () => {
 
   }, [])
 
-
-
-
-
-
-
   return (
-    <>
+    <div>
 
     <div>
       <Navbar />
@@ -115,7 +149,7 @@ const Calendar = () => {
     <div className='flex items-center justify-center h-screen mt-10'>
     <ScheduleComponent
     eventSettings={{
-      dataSource: test,
+      dataSource: filteredEvents,
     }}
     width={1000}
     height={800}
@@ -145,22 +179,14 @@ const Calendar = () => {
             Legend
           </p>
 
+          <div className='flex justify-center'><div className='mt-1.5 h-5 w-5 mb-3 bg-hiring border-black'></div><span className='ml-3'> : Hiring</span></div>
 
-          <p className='text-hiring'>
-            Hiring
-          </p>
+          <div className='flex justify-center'><div className='mt-1.5 h-5 w-5 mb-3 bg-competition border-black'></div><span className='ml-3'> : Competition</span></div>
 
-          <p className='text-competition'>
-            Competition
-          </p>
+          <div className='flex justify-center'><div className='mt-1.5 h-5 w-5 mb-3 bg-workshop border-black'></div><span className='ml-3'> : Workshop/Review Seminar</span></div>
 
-          <p className='text-workshop'>
-            Workshop/Review Seminar
-          </p>
+          <div className='flex justify-center'><div className='mt-1.5 h-5 w-5 mb-3 bg-network border-black'></div><span className='ml-3'> : Networking/Orientation</span></div> 
 
-          <p className='text-network'>
-            Networking/Orientation
-          </p>
         </p>
       </p>
     </div>
@@ -170,16 +196,25 @@ const Calendar = () => {
     <details class="mb-2 w-full">
         <summary class="text-2xl bg-gray-100 p-4 rounded-lg cursor-pointer shadow-md mb-4 w-full">
     
-            <span class="font-semibold text-black">Our Clubs! (Instagram Handles)</span>
+            <span class="font-semibold text-black">Filter by Club (Instagram Handle)</span>
         </summary>
         <div class="shadow-2xl bg-white w-full h-96 max-h-screen overflow-auto mx-auto my-8 p-6 rounded-lg flex items-start justify-left">
         <div className="bg-white w-full">
         {clubs.map((club, index) => (
-          <p key={index} className='text-black text-2xl font-semibold'>
+          <div className='flex'>
+           <input
+        type="checkbox"
+        value={club.club_name}
+        checked={selectedIds.includes(club.club_name)}
+        onChange={(event) => handleCheckboxChange(event)}
+      />
+          <p key={index} className='text-black text-2xl font-semibold ml-3'>
             {club.club_name}
           </p>
+          
+          </div>
         ))}
-
+        
 </div>
         </div>
     </details>
@@ -198,7 +233,7 @@ const Calendar = () => {
     </div>
 
 
-      </>
+    </div>
   );
 }
 
