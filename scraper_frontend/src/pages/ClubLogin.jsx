@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../client';
 
-const StudentLogin = () => {
+const StudentLogin = ({setToken}) => {
+  let navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     email:'',password:''
@@ -28,6 +30,8 @@ const StudentLogin = () => {
       })
       if (error) throw error
       console.log(data)
+      setToken(data)
+      navigate('/admin')
 
     } catch (error) {
       alert(error)
