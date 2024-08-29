@@ -1,16 +1,11 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 
 const Mainpage = () => (
     <div className="main-page">
-        <header className="header">
-            <img src="assets/images/logo.png" alt="Logo" className="logo" />
-            <nav className="nav">
-                <button className="nav-button">events</button>
-                <button className="nav-button">hiring</button>
-                <button className="nav-button"><a href="/clublogin">login</a></button>
-                <button className="nav-button">☰</button>
-            </nav>
-        </header>
+       <div>
+        <Navbar />
+       </div>
         <div className="content">
             <h1 className="title">UofT ClubHUB</h1>
             <input type="text" placeholder="Search for club..." className="search-bar" />
